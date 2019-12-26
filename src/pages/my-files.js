@@ -25,7 +25,7 @@ export default ({ data }) => {
                 <td>{node.extension}</td>
                 <td>{node.birthTime}</td>
               </tr>
-            ))}
+            ))}ww
           </tbody>
         </table>
       </div>
