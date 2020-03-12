@@ -16,27 +16,31 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
-    query {
-      allMarkdownRemark {
+    query Article {
+      allNodeArticle {
         edges {
           node {
-            fields {
-              slug
+            title
+            id
+            path {
+              alias
+            }
+            body {
+              summary
+              value
             }
           }
         }
       }
-    }
+    }   
   `)
 
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allNodeArticle.edges.forEach(({ node }) => {
     createPage({
-      path: node.fields.slug,
+      path: node.path.alias,
       component: path.resolve(`./src/templates/blog-post.js`),
       context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.fields.slug,
+        slug: node.path.alias,
       },
     })
   })

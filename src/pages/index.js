@@ -14,13 +14,13 @@ export default ({ data }) => {
             border-bottom: 1px solid;
           `}
         >
-          Amazing Pandas Eating Things
+          Dog Bork Things
         </h1>
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        <h4>{data.allNodeArticle.totalCount} Posts</h4>
+        {data.allNodeArticle.edges.map(({ node }) => (
           <div key={node.id}>
             <Link
-              to={node.fields.slug}
+              to={node.path.alias}
               css={css`
                 text-decoration: none;
                 color: inherit;
@@ -31,16 +31,9 @@ export default ({ data }) => {
                   margin-bottom: ${rhythm(1 / 4)};
                 `}
               >
-                {node.frontmatter.title}{" "}
-                <span
-                  css={css`
-                    color: #bbb;
-                  `}
-                >
-                  — {node.frontmatter.date}
-                </span>
+                {node.title}
               </h3>
-              <p>{node.excerpt}</p>
+              <p>{node.body.summary}</p>
             </Link>
           </div>
         ))}
@@ -51,21 +44,20 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
+    allNodeArticle {
       edges {
         node {
+          title
           id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
+          path {
+            alias
           }
-          fields {
-            slug
+          body {
+            summary
+            value
           }
-          excerpt
         }
       }
     }
-  }
+  }  
 `
