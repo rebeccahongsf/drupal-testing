@@ -4,6 +4,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-drupal`,
+      options: {
+        // preview: true,
+        baseUrl: `https://dev-doodledeveloper.pantheonsite.io/`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
