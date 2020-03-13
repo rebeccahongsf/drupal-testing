@@ -1,6 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
+import styled from styled-components
+
 import Layout from "../components/layout"
+
+const Img = styled.img`
+  maxwidth: 100%;
+`
 
 export default ({ data }) => {
   const post = data.nodeArticle
@@ -9,7 +15,7 @@ export default ({ data }) => {
       <div>
         <h1>{post.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: post.body.value }} />
-        <img src={post.relationships.field_image.localFile.publicURL} alt={post.field_image.alt} height={post.field_image.height} width={post.field_image.width} />
+        <Img src={post.relationships.field_image.localFile.publicURL} alt={post.field_image.alt} />
       </div>
     </Layout>
   )
