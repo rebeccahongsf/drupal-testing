@@ -9,7 +9,7 @@ export default ({ data }) => {
     <Layout>
       <div>
         <h1>{post.title}</h1>
-        <img src={post.relationships.field_image.localFile.publicURL} alt={post.field_image.alt} />
+        <img src={post.relationships.field_image.localFile.publicURL + '?w=200'} alt={post.field_image.alt} />
         <div dangerouslySetInnerHTML={{ __html: post.body.value }} />
       </div>
     </Layout>

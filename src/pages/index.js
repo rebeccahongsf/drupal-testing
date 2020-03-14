@@ -1,6 +1,7 @@
 import React from "react"
+import { Helmet } from 'react-helmet'
 import { css } from "@emotion/core"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, withPrefix } from "gatsby"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
